@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app" class="container">
+    <div class="excel">
+        <div class="contain">
+            <div class="excel__header">
+                <input class="input" type="text" value="Новая таблица"/>
+                <div class="button">
+                <span class="material-icons">
+                    exit_to_app
+                </span>
+                    <span class="material-icons">
+                    delete
+                </span>
+                </div>
+            </div>
+            <div class="excel__toolbar">
+            <span class="material-icons">
+                format_bold
+            </span>
+                <span class="material-icons">
+                format_italic
+            </span>
+                <span class="material-icons">
+                format_underlined
+            </span>
+                <span class="material-icons">
+                format_align_left
+            </span>
+                <span class="material-icons">
+                format_align_center
+            </span>
+                <span class="material-icons">
+                format_align_right
+            </span>
+            </div>
+            <div class="excel__formula">
+                <div class="info">fx</div>
+                <div class="input" contenteditable="true" spellcheck="false"></div>
+            </div>
+        </div>
+
+        <div class="excel__table">
+            <div class="row">
+                <div class="rowInfo"></div>
+                <div class="rowData">
+                    <div class="column">A</div>
+                    <div class="column">B</div>
+                    <div class="column">A</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="rowInfo">
+                    1
+                </div>
+                <div class="rowData">
+                    <div class="cell">A1</div>
+                    <div class="cell">B2</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

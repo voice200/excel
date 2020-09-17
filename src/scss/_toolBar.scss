@@ -1,0 +1,17 @@
+.excel__toolbar{
+  border-top: $borderToolBar;
+  border-bottom: $borderToolBar;
+  //position: absolute;
+  height: $toolBarHeight;
+  padding: 7px 10px;
+  display: flex;
+  justify-content: flex-start;
+
+  @include button($colorHover);
+  & > span{
+    font-size: 16px;
+    margin-right: 10px;
+  }
+
+
+}
