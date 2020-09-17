@@ -1,0 +1,36 @@
+@import "~normalize.css";
+@import "var";
+@import "header";
+@import "formula";
+@import "toolBar";
+@import "table";
+@import "dashboard";
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+body{
+  font-family: $roboto;
+  font-size: 12px;
+}
+
+.excel{
+  position: relative;
+  //max-width: 100px;
+  height: 100%;
+
+  .contain{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    max-width: 100%;
+  }
+}
