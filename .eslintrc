@@ -10,7 +10,10 @@
     "indent": "off",
     "arrow-parens": "off",
     "one-var": "off",
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "require-jsdoc": "off",
+    "no-undef": "off",
+    "max-len": "off"
   },
   "extends": ["eslint:recommended", "google"]
 }
