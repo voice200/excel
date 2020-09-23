@@ -4,19 +4,25 @@ const CODES = {
     Z: 90
 };
 
-function toCell() {
+function toCell(_, index) {
     const $cell = $.create('div', 'cell');
     $cell.setAttribute( 'contentEditable', 'true');
-    const $cellBlock = $cell.$el.outerHTML;
-    return $cellBlock;
+    $cell.setAttribute( 'data-cell', index);
+    const cellBlock = $cell.$el.outerHTML;
+    return cellBlock;
 }
 
 
-function toColumn(el) {
+function toColumn(el, index) {
     const $col = $.create('div', 'column');
+    const $colResize = $.create('div', 'colResize');
     $col.html(el);
-    const $colBlock = $col.$el.outerHTML;
-    return $colBlock;
+    $col.setAttribute('data-type', 'resizable');
+    $col.setAttribute( 'data-col', index);
+    $colResize.setAttribute( 'data-resize', 'col');
+    $col.append($colResize);
+    const colBlock = $col.$el.outerHTML;
+    return colBlock;
 }
 
 function createRow(content, number) {
@@ -24,14 +30,23 @@ function createRow(content, number) {
     const $row = $.create('div', 'row');
     const $rowInfo = $.create('div', 'rowInfo');
     const $rowData = $.create('div', 'rowData');
-    const contentInfo = number + 1;
-    $rowInfo.html(contentInfo);
-    $row.append($rowInfo);
+    const $rowResize = $.create('div', 'rowResize');
+    $row.setAttribute('data-type', 'resizable');
+    // $rowInfo.setAttribute('data-row', number-1);
+    $rowResize.setAttribute( 'data-resize', 'row');
+
+    if (number===0) {
+        $row.append($rowInfo);
+     } else {
+        $rowInfo.html(number);
+        $rowInfo.append($rowResize);
+        $row.append($rowInfo);
+    }
     $row.append($rowData.html(content));
     $rowContain.append($row);
 
-    const $rowBlock = $rowContain.$el.innerHTML;
-    return $rowBlock;
+    const rowBlock = $rowContain.$el.innerHTML;
+    return rowBlock;
 }
 
 function toChar(_, index) {
@@ -46,7 +61,7 @@ export function createTable(rowsCount = 200) {
         .map(toChar)
         .map(toColumn)
         .join('');
-    // rows.push(createRow());
+
     const cells = new Array(colsCounts)
         .fill('')
         .map(toCell)

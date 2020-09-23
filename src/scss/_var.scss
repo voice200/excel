@@ -11,7 +11,7 @@ $row-height: 24px;
 $cell-width: 120px;
 $borderTable: 1px solid lighten($colorBorder, 90%);
 $dbHeaderHeight: 40px;
-
+$primaryColor: #3c74ff;
 @mixin button($color: green){
   height: 34px;
   min-width: 24px;
