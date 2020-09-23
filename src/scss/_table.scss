@@ -14,13 +14,14 @@
   }
 
   .rowInfo{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     min-width: $infoCellWidth;
-    height: 100%;
     border: $borderToolBar;
     background: #f8f9fa;
+    height: 100%;
     border-top: none;
 
 
@@ -31,6 +32,7 @@
   }
 
   .column{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,6 +58,37 @@
       border: none;
       outline: 2px #3c74ff solid;
 
+    }
+  }
+  .colResize, .rowResize {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: $primaryColor;
+    opacity: 0;
+    z-index: 6;
+
+    &:hover, &:focus {
+      opacity: 1!important;
+
+    }
+  }
+
+  .colResize {
+    top: 0;
+    width: 4px;
+
+    &:hover {
+      cursor: col-resize;
+    }
+  }
+
+  .rowResize {
+    left: 0;
+    height: 4px;
+
+    &:hover {
+      cursor: row-resize;
     }
   }
 }
