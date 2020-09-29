@@ -4,25 +4,32 @@ const CODES = {
     Z: 90
 };
 
-function toCell(_, index) {
-    const $cell = $.create('div', 'cell');
-    $cell.setAttribute( 'contentEditable', 'true');
-    $cell.setAttribute( 'data-cell', index);
-    const cellBlock = $cell.$el.outerHTML;
-    return cellBlock;
+function toCell(row) {
+    return function(_, col) {
+        const $cell = $.create('div', 'cell');
+        $cell.setAttr({
+            'contentEditable': true,
+            'data-cell': col,
+            'data-id': `${row}-${col+1}`,
+            'data-type': 'cell',
+            'spellcheck': false
+        });
+        return $cell.html();
+    };
 }
 
 
 function toColumn(el, index) {
     const $col = $.create('div', 'column');
     const $colResize = $.create('div', 'colResize');
-    $col.html(el);
-    $col.setAttribute('data-type', 'resizable');
-    $col.setAttribute( 'data-col', index);
+    $col.text(el);
+    $col.setAttr({
+        'data-type': 'resizable',
+        'data-col': index
+    });
     $colResize.setAttribute( 'data-resize', 'col');
     $col.append($colResize);
-    const colBlock = $col.$el.outerHTML;
-    return colBlock;
+    return $col.html();
 }
 
 function createRow(content, number) {
@@ -32,21 +39,19 @@ function createRow(content, number) {
     const $rowData = $.create('div', 'rowData');
     const $rowResize = $.create('div', 'rowResize');
     $row.setAttribute('data-type', 'resizable');
-    // $rowInfo.setAttribute('data-row', number-1);
+    $rowInfo.setAttribute('data-row', number-1);
     $rowResize.setAttribute( 'data-resize', 'row');
 
     if (number===0) {
         $row.append($rowInfo);
      } else {
-        $rowInfo.html(number);
+        $rowInfo.text(number);
         $rowInfo.append($rowResize);
         $row.append($rowInfo);
     }
     $row.append($rowData.html(content));
     $rowContain.append($row);
-
-    const rowBlock = $rowContain.$el.innerHTML;
-    return rowBlock;
+    return $row.html();
 }
 
 function toChar(_, index) {
@@ -62,16 +67,15 @@ export function createTable(rowsCount = 200) {
         .map(toColumn)
         .join('');
 
-    const cells = new Array(colsCounts)
-        .fill('')
-        .map(toCell)
-        .join('');
-
-    for (let i = 0; i < rowsCount; i++) {
-        if (i===0) {
-            rows.push(createRow(cols, i));
+    for (let row = 0; row < rowsCount; row++) {
+        const cells = new Array(colsCounts)
+            .fill('')
+            .map(toCell(row))
+            .join('');
+        if (row === 0) {
+            rows.push(createRow(cols, row));
         } else {
-            rows.push(createRow(cells, i));
+            rows.push(createRow(cells, row));
         }
     }
     return rows.join('');

@@ -52,6 +52,9 @@
     color: #111;
     white-space: nowrap;
     font-size: .8rem;
+    outline: none;
+    position: relative;
+    z-index: 10;
 
 
     &.selected{

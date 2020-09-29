@@ -4,8 +4,15 @@ class Dom {
 }
 
     setAttribute(name, value) {
-   // Реализовать удалить атрибуты и множественное добавление и удаление атрибутов
         this.$el.setAttribute(name, value);
+        return this;
+    }
+    setAttr(attributes = {}) {
+        const keys = Object.keys(attributes);
+        keys.forEach(key =>{
+            this.$el.setAttribute(key, attributes[key]);
+        });
+        return this;
     }
     html(html) {
         if (typeof html === 'string') {
@@ -15,6 +22,16 @@ class Dom {
             this.$el.innerText = html;
         }
         return this.$el.outerHTML.trim();
+    }
+    text(text) {
+        if (typeof text === 'string' || typeof text === 'number') {
+            this.$el.textContent = text;
+            // return this;
+        }
+        if (this.$el.tagName.toLowerCase() === 'input') {
+            return this.$el.value.trim();
+        }
+        return this.$el.textContent.trim();
     }
     clear() {
         this.html('');
@@ -55,6 +72,32 @@ class Dom {
         keys.forEach(key =>{
             this.$el.style[key] = styles[key];
         });
+        return this;
+    }
+    find(selector) {
+        return $(this.$el.querySelector(selector));
+    }
+    addClass(className) {
+        this.$el.classList.add(className);
+        return this;
+    }
+    removeClass(className) {
+        this.$el.classList.remove(className);
+        return this;
+    }
+    id(parse) {
+        if (parse) {
+            const parsed = this.id().split('-');
+            return {
+                row: +parsed[0],
+                col: +parsed[1]
+            };
+        }
+      return this.data.id;
+    }
+    focus($el) {
+        this.$el.focus();
+        return this;
     }
 }
 

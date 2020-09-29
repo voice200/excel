@@ -16,7 +16,6 @@ export function tableResize($root, event) {
 
     document.onmousemove = e => {
         if (type === 'col') {
-            console.log(type);
             const delta = e.pageX - coords.right;
             size = coords.width + delta;
             $resizer.css({right: -delta + `px`});

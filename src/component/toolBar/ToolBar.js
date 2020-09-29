@@ -2,6 +2,14 @@ import {ExcelComponent} from '@core/ExcelComponent';
 
 export class ToolBar extends ExcelComponent {
     static className = 'excel__toolbar';
+
+    constructor($root, options) {
+        super($root, {
+            name: 'ToolBar',
+            listeners: ['click'],
+            ...options
+        });
+    }
     toHTML() {
         return ` <span class="material-icons">
                 format_bold
@@ -21,5 +29,7 @@ export class ToolBar extends ExcelComponent {
                 <span class="material-icons">
                 format_align_right
             </span>`;
+    }
+    onClick() {
     }
 }
