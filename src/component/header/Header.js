@@ -1,4 +1,5 @@
 import {ExcelComponent} from '@core/ExcelComponent';
+import {$} from '@core/dom';
 
 export class Header extends ExcelComponent {
     static className = 'excel__header';
@@ -9,14 +10,10 @@ export class Header extends ExcelComponent {
         });
     }
     toHTML() {
-        return `<input class="input" type="text" value="Новая таблица"/>
-                <div class="button">
-                <span class="material-icons">
-                    exit_to_app
-                </span>
-                    <span class="material-icons">
-                    delete
-                </span>
-                </div>`;
+        const $input = $.create('input', 'input').setAttribute('value','Новая таблица');
+        const $divButton = $.create('div', 'button');
+        $divButton.append($.create('span', 'material-icons').text('exit_to_app'));
+        $divButton.append( $.create('span', 'material-icons').text('delete'));
+        return $input.html() + $divButton.html();
     }
 }
