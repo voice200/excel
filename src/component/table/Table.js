@@ -53,7 +53,9 @@ export class Table extends ExcelComponent {
                 this.selection.select($target);
             }
         }
-        this.$emit('table:mousedown', $(event.target));
+        if (isCell(event)) {
+            this.$emit('table:mousedown', $(event.target));
+        }
     }
     onKeydown(event) {
         if (isCell(event) && !event.shiftKey) {
