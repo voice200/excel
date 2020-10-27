@@ -4,8 +4,11 @@ class Dom {
 }
 
     setAttribute(name, value) {
-        this.$el.setAttribute(name, value);
-        return this;
+        if (value) {
+            this.$el.setAttribute(name, value);
+            return this;
+        }
+        return this.$el.getAttribute(name);
     }
     setAttr(attributes = {}) {
         const keys = Object.keys(attributes);
@@ -84,6 +87,13 @@ class Dom {
     removeClass(className) {
         this.$el.classList.remove(className);
         return this;
+    }
+
+    getStyles(styles = []) {
+        return styles.reduce((res, s) => {
+            res[s] = this.$el.style[s];
+            return res;
+        }, {});
     }
     id(parse) {
         if (parse) {
