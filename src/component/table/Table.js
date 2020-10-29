@@ -28,7 +28,6 @@ export class Table extends ExcelComponent {
         this.selectCell($cell);
         this.$on('formula:input', value =>{
             this.selection.current.setAttribute('data-value', value).text(parse(value));
-            // this.selection.current.text(text);
             this.updateTextInStore(value);
         });
         this.$on('formula:focus', () =>{
@@ -50,7 +49,6 @@ export class Table extends ExcelComponent {
         this.selection.select($cell);
         this.$emit('table:select', $cell);
         const styles = $cell.getStyles(Object.keys(defaultStyles));
-        console.log('styles to dispatch', styles);
         this.$dispatch(actions.changeStyle(styles));
     }
     async resizeTable(event) {

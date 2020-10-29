@@ -1,5 +1,5 @@
 import {
-    APPLY_STYLE,
+    APPLY_STYLE, CHANGE_DATE,
     CHANGE_STYLES,
     CHANGE_TEXT,
     CHANGE_TITLE,
@@ -7,7 +7,6 @@ import {
 } from '@/redux/types';
 
 export function rootReducer(state, action) {
-    console.log(action);
     let field;
     let prevState;
     let val;
@@ -37,6 +36,8 @@ export function rootReducer(state, action) {
             };
         case CHANGE_TITLE:
             return {...state, title: action.data};
+        case CHANGE_DATE:
+            return {...state, date: action.data};
         default: return state;
     }
 }
