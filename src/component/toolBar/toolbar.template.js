@@ -1,7 +1,6 @@
 import {$} from '@core/dom';
 
 export function createToolbar(state) {
-    console.log('render');
     const materialIcons = [
         {
             icon: 'format_bold',

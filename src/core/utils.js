@@ -49,3 +49,11 @@ export function debounce(fn, wait) {
         timout = setTimeout(later, wait);
     };
 }
+
+export function clone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+
+export function dateLocal(date) {
+    return date.toLocaleString('ru');
+}
