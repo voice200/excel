@@ -1,5 +1,5 @@
 import {clone, dateLocal, storage} from '@core/utils';
-import {defaultStyles, defaultTitle} from '@/constans';
+import {defaultIDTitle, defaultStyles, defaultTitle} from '@/constans';
 
 const defaultState = {
     rowState: {},
@@ -9,7 +9,8 @@ const defaultState = {
     currentText: '',
     title: defaultTitle,
     currentStyles: defaultStyles,
-    date: dateLocal(new Date())
+    date: dateLocal(new Date()),
+    idTitle: defaultIDTitle
 };
 const normalize = state => ({
     ...state,

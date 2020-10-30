@@ -43,7 +43,7 @@ export class Table extends ExcelComponent {
     }
 
     toHTML() {
-        return createTable(10, this.store.getState());
+        return createTable(100, this.store.getState());
     }
     selectCell($cell) {
         this.selection.select($cell);

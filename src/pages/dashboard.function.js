@@ -1,5 +1,4 @@
 import {storage} from '@core/utils';
-import {defaultTitle} from '@/constans';
 
 function toHTML(key) {
    const model = storage(key);

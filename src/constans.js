@@ -6,3 +6,4 @@ export const defaultStyles = {
 };
 
 export const defaultTitle = 'Новая таблица';
+export const defaultIDTitle = 1;
